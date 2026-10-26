@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "generated_at_utc": "2026-10-26T04:15:17+00:00",
+    "source_files": [
+      {
+        "name": "Ticket type per order 24Apr_14Oct.csv",
+        "sha256": "b71677ed1cbce2f6b46756a7213b6566bc3376e87ce7abcf6271ab60e9f35a08",
+        "rows": 95668
+      },
+      {
+        "name": "Transactions By Event 23Apr_14Oct.csv",
+        "sha256": "323ec02ecc8078ac4c4782d3fed7122c4b8840e9748e0d79dad8763df9a7d8f6",
+        "rows": 69808
+      },
+      {
+        "name": "Customer Postcodes.csv",
+        "sha256": "40328d870e7de9b694a227896c8e8b6b1ee8ad1ed3fdab0fc613891f4ef1c293",
+        "rows": 20352
+      }
+    ],
+    "transaction_date_range": [
+      "2024-04-23T10:26:00",
+      "2024-10-13T10:01:00"
+    ],
+    "event_date_range": [
+      "2024-06-10T18:00:00",
+      "2024-08-25T21:00:00"
+    ]
+  },
+  "categories": {
+    "format": "DIGITAL_CATCHUP",
+    "total_tickets": 20073,
+    "items": [
+      {
+        "label": "solo live",
+        "count": 13246,
+        "percentage": 65.98913964031286
+      },
+      {
+        "label": "solo on demand",
+        "count": 3693,
+        "percentage": 18.397847855328052
+      },
+      {
+        "label": "pay later",
+        "count": 2357,
+        "percentage": 11.742141184675933
+      },
+      {
+        "label": "group live",
+        "count": 626,
+        "percentage": 3.118617047775619
+      },
+      {
+        "label": "group on demand",
+        "count": 84,
+        "percentage": 0.41847257510088176
+      },
+      {
+        "label": "school live",
+        "count": 60,
+        "percentage": 0.2989089822149156
+      },
+      {
+        "label": "school on demand",
+        "count": 7,
+        "percentage": 0.03487271459174015
+      }
+    ]
+  },
+  "timing": {
+    "bin_edges": [
+      -70,
+      -60,
+      -50,
+      -40,
+      -30,
+      -20,
+      -10,
+      0,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120,
+      130
+    ],
+    "include_cancelled": {
+      "physical": {
+        "record_count": 45424,
+        "median_days": 52.80277777777778,
+        "after_start_count": 548,
+        "after_start_percentage": 1.206410707995773,
+        "histogram": [
+          0,
+          3,
+          7,
+          11,
+          21,
+          57,
+          449,
+          10054,
+          2891,
+          2157,
+          2055,
+          2415,
+          12167,
+          9690,
+          1117,
+          95,
+          68,
+          777,
+          743,
+          647
+        ]
+      },
+      "digital": {
+        "record_count": 20294,
+        "median_days": 12.016666666666666,
+        "after_start_count": 4860,
+        "after_start_percentage": 23.94796491573864,
+        "histogram": [
+          2,
+          35,
+          87,
+          136,
+          300,
+          668,
+          3632,
+          4795,
+          1927,
+          1109,
+          904,
+          1089,
+          2502,
+          1766,
+          848,
+          140,
+          32,
+          145,
+          145,
+          32
+        ]
+      }
+    },
+    "exclude_cancelled": {
+      "physical": {
+        "record_count": 44252,
+        "median_days": 52.315625,
+        "after_start_count": 548,
+        "after_start_percentage": 1.2383621079273253,
+        "histogram": [
+          0,
+          3,
+          7,
+          11,
+          21,
+          57,
+          449,
+          10001,
+          2809,
+          2081,
+          1983,
+          2333,
+          11878,
+          9220,
+          1069,
+          95,
+          68,
+          777,
+          743,
+          647
+        ]
+      },
+      "digital": {
+        "record_count": 20058,
+        "median_days": 11.691666666666666,
+        "after_start_count": 4860,
+        "after_start_percentage": 24.229733772061024,
+        "histogram": [
+          2,
+          35,
+          87,
+          136,
+          300,
+          668,
+          3632,
+          4784,
+          1920,
+          1094,
+          883,
+          1063,
+          2463,
+          1687,
+          823,
+          127,
+          32,
+          145,
+          145,
+          32
+        ]
+      }
+    },
+    "y_max": 15000
+  },
+  "locations": {
+    "physical": {
+      "identified_purchasers": 16667,
+      "uk": 15417,
+      "other": 678,
+      "unknown": 572,
+      "unknown_missing_profile": 8,
+      "unknown_blank_country": 564
+    },
+    "digital": {
+      "identified_purchasers": 6048,
+      "uk": 4291,
+      "other": 295,
+      "unknown": 1462,
+      "unknown_missing_profile": 1,
+      "unknown_blank_country": 1461
+    },
+    "overlap_purchasers": 2358,
+    "unique_purchasers": 20357
+  },
+  "quality": {
+    "ticket_rows": 95668,
+    "transaction_rows": 69808,
+    "customer_rows": 20352,
+    "repeated_ticket_rows": 26091,
+    "negative_quantity_rows": 4090,
+    "negative_value_rows": 3273,
+    "zero_value_rows": 20167,
+    "unmatched_transaction_ticket_rows": 213,
+    "missing_customer_id_ticket_rows": 222,
+    "missing_profile_ticket_rows": 56,
+    "blank_country_ticket_rows": 5185,
+    "known_country_ticket_rows": 89992,
+    "linked_ticket_rows": 95668,
+    "matched_order_event_pairs": 61931,
+    "unmatched_ticket_order_event_pairs": 86,
+    "transaction_only_order_event_pairs": 7877,
+    "quantity_mismatch_order_event_pairs": 277,
+    "physical_online_label_ticket_rows": 1060,
+    "totals": {
+      "physical": {
+        "ticket_quantity": 75595,
+        "positive_transaction_quantity": 83116,
+        "negative_transaction_quantity": -7725,
+        "signed_transaction_quantity": 75391
+      },
+      "digital": {
+        "ticket_quantity": 20073,
+        "positive_transaction_quantity": 20339,
+        "negative_transaction_quantity": -277,
+        "signed_transaction_quantity": 20062
+      }
+    }
+  }
+}

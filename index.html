@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Edinburgh Book Festival: Audience and Booking Explorer</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to dashboard</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Back to the top">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M3 6c5-1 9 0 13 3 4-3 8-4 13-3v20c-5-1-9 0-13 3-4-3-8-4-13-3V6Zm13 3v20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <span>FESTIVAL EXPLORER</span>
+      </a>
+      <nav aria-label="Dashboard sections">
+        <a href="#categories">01 <span>Ticket categories</span></a>
+        <a href="#timing">02 <span>Transaction timing</span></a>
+        <a href="#locations">03 <span>Purchaser locations</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="hero" id="top">
+      <div>
+        <p class="eyebrow">PROGRAMME &amp; MARKETING · 2024 RECORDS</p>
+        <h1>Edinburgh Book Festival:<br><span>Audience and Booking Explorer</span></h1>
+        <p class="hero-intro">Explore ticket categories, recorded transaction timing and the limits of purchaser location data.</p>
+      </div>
+      <aside class="hero-note">
+        <p class="eyebrow">READING THIS DASHBOARD</p>
+        <p>Tickets, transactions and purchasing accounts describe different things. Each section makes its counting unit visible.</p>
+        <a href="#data-notes">Read the data notes <span aria-hidden="true">↗</span></a>
+      </aside>
+    </div>
+
+    <p id="load-status" class="load-status" role="status">Loading the aggregate data…</p>
+    <noscript><p class="error">Enable JavaScript to view the charts and use the controls.</p></noscript>
+
+    <div id="dashboard" hidden>
+      <section class="section-card" id="categories" aria-labelledby="categories-heading">
+        <div class="section-heading">
+          <span class="section-number" aria-hidden="true">01</span>
+          <div><p class="eyebrow">COUNTING UNIT: RECORDED TICKETS</p><h2 id="categories-heading">Digital ticket categories</h2></div>
+        </div>
+        <p class="section-intro">Seven ticket categories within the recorded format <code>DIGITAL_CATCHUP</code>.</p>
+        <div class="category-layout">
+          <div>
+            <div class="category-column-head" aria-hidden="true"><span>Ticket category</span><span>Tickets · share of digital tickets</span></div>
+            <div id="category-chart" class="category-chart" role="list" aria-label="Digital ticket categories, counts and percentages"></div>
+            <div class="category-axis" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+            <p class="chart-caption" id="category-denominator"></p>
+          </div>
+          <aside class="interpretation">
+            <p class="eyebrow">LOOK BEYOND THE FORMAT LABEL</p>
+            <p class="feature-number" id="solo-share"></p>
+            <p id="solo-description"></p>
+            <p class="interpretation-note">The recorded digital format includes tickets labelled ‘solo live’. Ticket labels do not establish whether, when or how many people actually watched.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-card" id="timing" aria-labelledby="timing-heading">
+        <div class="section-heading heading-with-control">
+          <span class="section-number" aria-hidden="true">02</span>
+          <div><p class="eyebrow">COUNTING UNIT: POSITIVE-QUANTITY ORDER–EVENT RECORDS</p><h2 id="timing-heading">Recorded transaction timing</h2></div>
+          <label class="toggle" for="exclude-cancelled"><input id="exclude-cancelled" type="checkbox"><span>Exclude Cancelled</span></label>
+        </div>
+        <p class="section-intro">Lead time is the scheduled event start minus the recorded transaction timestamp, in days, with each positive-quantity order–event record given equal weight. A negative value indicates a transaction recorded after the scheduled start and does not establish when someone attended or watched. The recorded <code>DIGITAL_CATCHUP</code> format includes different ticket labels, including ‘solo live’, so it should not automatically be interpreted as a uniform on-demand audience.</p>
+        <div class="timing-context">
+          <span id="timing-filter-label" class="status-tag" aria-live="polite"></span>
+          <span>Negative days mean recorded after the scheduled start.</span>
+          <label class="timing-mode" for="timing-mode">Bar heights
+            <select id="timing-mode" aria-describedby="timing-caption">
+              <option value="count" selected>Record count</option>
+              <option value="percentage">Percentage within each format</option>
+            </select>
+          </label>
+        </div>
+        <div class="timing-grid">
+          <article class="timing-panel physical" aria-labelledby="physical-heading">
+            <div class="panel-title"><h3 id="physical-heading"><span class="swatch physical-swatch" aria-hidden="true"></span>Physical</h3><span class="sample-size" id="physical-sample"></span></div>
+            <div class="timing-stats" id="physical-stats"></div>
+            <div id="physical-histogram" class="histogram"></div>
+          </article>
+          <article class="timing-panel digital" aria-labelledby="digital-heading">
+            <div class="panel-title"><h3 id="digital-heading"><span class="swatch digital-swatch" aria-hidden="true"></span>Digital</h3><span class="sample-size" id="digital-sample"></span></div>
+            <div class="timing-stats" id="digital-stats"></div>
+            <div id="digital-histogram" class="histogram"></div>
+          </article>
+        </div>
+        <p id="timing-caption" class="chart-caption" aria-live="polite"></p>
+        <details class="chart-details"><summary>View histogram counts</summary><div class="table-scroll"><table id="histogram-table"><caption>Record counts in each timing interval</caption><thead><tr><th scope="col">Days before scheduled start</th><th scope="col">Physical records</th><th scope="col">Digital records</th></tr></thead><tbody></tbody></table></div><p class="chart-caption">Each interval includes its lower boundary and excludes its upper boundary, except the final interval, which includes both.</p></details>
+      </section>
+
+      <section class="section-card" id="locations" aria-labelledby="locations-heading">
+        <div class="section-heading">
+          <span class="section-number" aria-hidden="true">03</span>
+          <div><p class="eyebrow">COUNTING UNIT: DISTINCT IDENTIFIED PURCHASERS</p><h2 id="locations-heading">Purchaser locations</h2></div>
+        </div>
+        <p class="section-intro">Recorded countries for purchasing accounts linked to ticket records. Each identified account counts once within each format.</p>
+        <div class="observed-label"><span class="small-label">OBSERVED DATA</span><span>Purchasing accounts are not necessarily individual attendees.</span></div>
+        <div id="observed-locations">
+          <div class="location-head"><span>Recorded location</span><div><h3>Physical</h3><p id="physical-denominator"></p></div><div><h3>Digital</h3><p id="digital-denominator"></p></div></div>
+          <div id="location-chart" role="list" aria-label="Observed purchaser locations"></div>
+          <p id="location-overlap" class="chart-caption"></p>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-heading"><div><p class="eyebrow">HYPOTHETICAL SCENARIOS</p><h3>What if the unknown countries were different?</h3></div><button id="reset-scenarios" type="button">Reset both to 0%</button></div>
+          <p class="scenario-intro">For each format, choose the percentage of unknown-country purchasers assumed to be outside the UK. The rest are assumed to be in the UK.</p>
+          <div class="scenario-grid">
+            <div class="scenario-control physical">
+              <label for="physical-assumption">Physical: unknown-country purchasers assumed outside the UK</label>
+              <div class="slider-value"><output id="physical-assumption-value" for="physical-assumption">0%</output><span>of unknown-country purchasers</span></div>
+              <input type="range" id="physical-assumption" min="0" max="100" value="0" step="1" aria-describedby="physical-scenario-basis">
+              <div class="slider-ends" aria-hidden="true"><span>0% · all UK</span><span>100% · all outside UK</span></div>
+              <div class="scenario-result" aria-live="polite" aria-atomic="true"><span>Hypothetical non-UK share</span><strong id="physical-scenario-share"></strong></div>
+              <p id="physical-scenario-basis" class="scenario-basis"></p>
+            </div>
+            <div class="scenario-control digital">
+              <label for="digital-assumption">Digital: unknown-country purchasers assumed outside the UK</label>
+              <div class="slider-value"><output id="digital-assumption-value" for="digital-assumption">0%</output><span>of unknown-country purchasers</span></div>
+              <input type="range" id="digital-assumption" min="0" max="100" value="0" step="1" aria-describedby="digital-scenario-basis">
+              <div class="slider-ends" aria-hidden="true"><span>0% · all UK</span><span>100% · all outside UK</span></div>
+              <div class="scenario-result" aria-live="polite" aria-atomic="true"><span>Hypothetical non-UK share</span><strong id="digital-scenario-share"></strong></div>
+              <p id="digital-scenario-basis" class="scenario-basis"></p>
+            </div>
+          </div>
+          <p class="scenario-formula">Hypothetical share = (known non-UK purchasers + assumed fraction × unknown-country purchasers) ÷ all identified purchasers.</p>
+          <p class="scenario-warning"><strong>These scenarios are not estimates or confidence intervals.</strong> The sliders do not change the observed data. They do not account for unidentified purchasers or incorrectly recorded countries.</p>
+        </div>
+      </section>
+
+      <section class="data-notes" id="data-notes" aria-labelledby="notes-heading">
+        <div class="notes-title"><p class="eyebrow">HOW TO READ THE RECORDS</p><h2 id="notes-heading">Data notes</h2></div>
+        <div class="notes-grid">
+          <div><h3>Different units, different populations</h3><p>Ticket quantities come from the ticket-type extract. Timing uses all positive-quantity transaction records, including those absent from the ticket extract. Locations use distinct identified purchasers linked to ticket records. None of these measures establishes attendance or viewing.</p></div>
+          <div><h3>Repeated rows and adjustments</h3><p id="quantity-note"></p><p>Negative quantities may represent adjustments; their reasons are unconfirmed. After-start timestamps and zero-value records are retained.</p></div>
+          <div><h3>Linkage and missing countries</h3><p id="linkage-note"></p><p>Purchasers with an ID but no country remain ‘Unknown’. Rows without a purchaser ID are excluded from purchaser denominators. Countries are not inferred from postcodes.</p></div>
+          <div><h3>Recorded classifications</h3><p id="format-note"></p><p>‘UK’ is standardised to ‘United Kingdom’; ‘Usa’ and ‘United States of America’ to ‘United States’. ‘Other recorded location’ includes every other nonblank country label, including territories.</p></div>
+        </div>
+        <details class="source-details"><summary>Source coverage and quantity reconciliation</summary><div id="source-notes"></div></details>
+      </section>
+      <footer><span>Edinburgh Book Festival · Audience and Booking Explorer</span><span>Aggregate data snapshot · No external services</span></footer>
+    </div>
+  </main>
+</body>
+</html>

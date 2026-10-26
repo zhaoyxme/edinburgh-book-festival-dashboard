@@ -1,0 +1,11 @@
+# Keep private coursework inputs and local credentials out of this static site.
+*.csv
+*.ipynb
+.env
+.env.*
+*.pem
+*.key
+__pycache__/
+node_modules/
+.DS_Store
+Thumbs.db
